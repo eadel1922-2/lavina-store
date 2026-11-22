@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>إدارة لافينا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="admin.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script defer src="admin.js"></script>
+</head>
+<body class="admin-body">
+<header class="admin-header"><a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LAVINA</b><small>لوحة إدارة المتجر</small></span></a><a href="index.html" class="back-link">عرض المتجر ↗</a></header>
+<main class="admin-main">
+  <section id="loginPanel" class="admin-panel login-panel"><span class="eyebrow">LAVINA ADMIN</span><h1>مرحبًا بعودتكِ</h1><p>سجلي الدخول لإدارة منتجات متجرك.</p><form id="loginForm"><label>البريد الإلكتروني<input id="email" type="email" required autocomplete="username"></label><label>كلمة المرور<input id="password" type="password" required autocomplete="current-password"></label><button class="primary-btn full" type="submit">تسجيل الدخول</button></form><p id="loginMessage" class="admin-message"></p><small>يتم إنشاء حساب المدير من لوحة Supabase، ولا يوجد تسجيل عام من هذه الصفحة.</small></section>
+  <section id="dashboard" hidden>
+    <div class="dashboard-heading"><div><span class="eyebrow">STORE CONTROL CENTER</span><h1>إدارة المنتجات</h1><p>أضيفي منتجاتكِ وعدّلي الأسعار والصور بسهولة.</p></div><button id="logoutBtn" class="outline-btn">تسجيل الخروج</button></div>
+    <div class="admin-stats"><div><small>إجمالي المنتجات</small><b id="totalProducts">0</b></div><div><small>المنتجات المنشورة</small><b id="activeProducts">0</b></div><div><small>متوسط التقييم</small><b id="averageRating">0</b></div><div><small>العملة</small><b>جنيه مصري</b></div></div>
+    <div class="admin-layout">
+      <section class="admin-panel"><div class="panel-title"><h2 id="formTitle">إضافة منتج جديد</h2><span class="eyebrow">PRODUCT FORM</span></div>
+      <form id="productForm">
+        <input type="hidden" id="productId">
+        <label>اسم المنتج<input id="name" required maxlength="120" placeholder="مثال: فستان صيفي أنيق"></label>
+        <div class="form-grid"><label>التصنيف<select id="category"><option>فساتين</option><option>بلوزات</option><option>بناطيل</option><option>أطقم</option><option>عبايات</option><option>إكسسوارات</option><option>أخرى</option></select></label><label>السعر بالجنيه<input id="price" type="number" min="0" step="0.01" required></label></div>
+        <div class="form-grid"><label>سعر الخصم (اختياري)<input id="sale_price" type="number" min="0" step="0.01" placeholder="اتركيه فارغًا بدون خصم"></label><label>المقاسات مفصولة بفاصلة<input id="sizes" placeholder="S, M, L, XL"></label></div>
+        <label>الألوان مفصولة بفاصلة<input id="colors" placeholder="أسود, أبيض, بيج"></label>
+        <div class="form-grid"><label>تقييم المنتج (من 5)<input id="rating" type="number" min="0" max="5" step="0.1" value="0" placeholder="مثال: 4.5"></label><label>عدد التقييمات<input id="rating_count" type="number" min="0" step="1" value="0" placeholder="مثال: 12"></label></div>
+        <label>وصف المنتج<textarea id="description" rows="3" placeholder="اكتبي وصفًا مختصرًا للمنتج"></textarea></label>
+        <label>صورة المنتج<input id="image" type="file" accept="image/png,image/jpeg,image/webp"></label><div id="imagePreview" class="image-preview">معاينة صورة المنتج</div>
+        <label class="check-label"><input id="active" type="checkbox" checked> نشر المنتج في المتجر</label>
+        <div class="form-actions"><button class="primary-btn" type="submit" id="saveBtn">حفظ المنتج</button><button class="outline-btn" type="button" id="resetBtn">تفريغ الحقول</button></div><p id="formMessage" class="admin-message"></p>
+      </form></section>
+      <section class="admin-panel inventory-panel"><div class="panel-title"><h2>قائمة المنتجات</h2><span class="eyebrow">INVENTORY</span></div><input id="adminSearch" class="admin-search" placeholder="ابحثي باسم المنتج..."><div id="adminProducts" class="admin-products"></div></section>
+    </div>
+  </section>
+</main>
+<div id="adminToast" class="toast"></div>
+</body></html>

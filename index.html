@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#B76E79">
+  <title>لافينا | أناقتكِ تبدأ من هنا</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script defer src="store.js"></script>
+</head>
+<body>
+  <div class="top-strip">✨ تشكيلة جديدة من الأناقة — تسوقي الأعلى تقييمًا والأكثر مبيعًا</div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">L</span><span><b>LAVINA</b><small>لافينا · أناقتكِ تبدأ من هنا</small></span></a>
+    <div class="search-wrap"><input id="searchInput" type="search" placeholder="ابحثي عن فستان، بلوزة، طقم..."><button id="searchBtn" aria-label="بحث">⌕</button></div>
+    <button class="cart-trigger" id="cartOpen">🛍️ <span>السلة</span><b id="cartCount">0</b></button>
+  </header>
+  <nav class="category-nav" id="categoryNav">
+    <button class="category active" data-category="الكل">كل المنتجات</button>
+    <button class="category" data-category="فساتين">فساتين</button>
+    <button class="category" data-category="بلوزات">بلوزات</button>
+    <button class="category" data-category="بناطيل">بناطيل</button>
+    <button class="category" data-category="أطقم">أطقم</button>
+    <button class="category" data-category="عبايات">عبايات</button>
+    <button class="category" data-category="إكسسوارات">إكسسوارات</button>
+  </nav>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">LAVINA · NEW COLLECTION</span>
+        <h1>لأن أناقتكِ<br><em>تستحق التميز</em></h1>
+        <p>اختاري إطلالتكِ المفضلة من تشكيلتنا المختارة بعناية، بتفاصيل تليق بكِ.</p>
+        <a class="primary-btn" href="#products">اكتشفي المجموعة <span>←</span></a>
+      </div>
+      <div class="hero-art"><div class="hero-circle"></div><div class="hero-label">NEW<br>SEASON</div><div class="hero-flower">✿</div></div>
+    </section>
+    <section class="benefits">
+      <div><span>♡</span><b>اختيارات أنيقة</b><small>موديلات مختارة لكِ</small></div>
+      <div><span>✓</span><b>طلب سهل وسريع</b><small>تواصلي معنا عبر واتساب</small></div>
+      <div><span>✧</span><b>تجدد مستمر</b><small>تابعي أحدث الإضافات</small></div>
+    </section>
+    <section class="products-section" id="products">
+      <div class="section-heading"><div><span class="eyebrow">SHOP THE COLLECTION</span><h2>تسوقي منتجاتنا</h2></div><div class="section-tools"><span id="productCount" class="muted">جاري تحميل المنتجات...</span><select id="sortSelect" class="sort-select" aria-label="ترتيب المنتجات"><option value="default">الترتيب الافتراضي</option><option value="rating">الأعلى تقييمًا</option><option value="price-asc">السعر: الأقل أولًا</option><option value="price-desc">السعر: الأعلى أولًا</option></select></div></div>
+      <div id="statusMessage" class="status-message">جاري تحميل المنتجات...</div>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+    <section class="newsletter"><div><span class="eyebrow">STAY IN STYLE</span><h2>كوني أول من يعرف جديدنا</h2><p>تابعي تشكيلات لافينا الجديدة والعروض المميزة.</p></div><a id="followWhatsapp" class="light-btn" href="#" target="_blank" rel="noopener">تواصلي معنا عبر واتساب</a></section>
+  </main>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">L</span><span><b>LAVINA</b><small>لافينا · أناقتكِ تبدأ من هنا</small></span></a><p>© <span id="year"></span> لافينا. جميع الحقوق محفوظة.</p><a href="admin.html">إدارة المتجر</a></footer>
+
+  <div class="modal-backdrop" id="productModal">
+    <div class="modal product-modal"><button class="close-modal" data-close="productModal">×</button><div id="productDetails"></div></div>
+  </div>
+  <div class="modal-backdrop" id="cartModal">
+    <div class="modal cart-modal"><button class="close-modal" data-close="cartModal">×</button><h2>سلة مشترياتكِ</h2><div id="cartItems"></div><div class="cart-total"><span>الإجمالي</span><b id="cartTotal">0 ج.م</b></div><button class="primary-btn full" id="checkoutBtn">إتمام الطلب عبر واتساب</button><p class="tiny-note">سيتم إرسال تفاصيل طلبكِ إلى واتساب لتأكيده.</p></div>
+  </div>
+  <div id="toast" class="toast"></div>
+</body>
+</html>
